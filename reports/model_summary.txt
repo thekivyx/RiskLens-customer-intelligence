@@ -1,0 +1,9 @@
+RiskLens Text Classification Model
+==================================
+Model: TF-IDF + Logistic Regression
+Training records: 1165
+Testing records: 292
+Issue categories: 11
+Accuracy: 0.6096
+Macro F1-score: 0.6140
+Weighted F1-score: 0.6083

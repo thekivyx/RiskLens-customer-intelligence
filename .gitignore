@@ -5,3 +5,5 @@ __pycache__/
 data/raw/
 data/processed/
 .vscode/
+# Trained model artifact
+models/*.joblib
