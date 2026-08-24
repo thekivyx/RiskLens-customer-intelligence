@@ -1,4 +1,5 @@
 # RiskLens
+[![RiskLens Tests](https://github.com/thekivyx/RiskLens-customer-intelligence/actions/workflows/tests.yml/badge.svg)](https://github.com/thekivyx/RiskLens-customer-intelligence/actions/workflows/tests.yml)
 
 ## Customer Complaint Intelligence & Early-Warning Platform
 
