@@ -1,0 +1,4 @@
+complaint_id,date_received,product,issue,company,timely_response
+1001,2026-07-01,Credit card,Incorrect information,Example Bank A,Yes
+1002,2026-07-02,Checking or savings account,Account management,Example Bank B,No
+1003,2026-07-03,Credit card,Problem with a purchase,Example Bank C,Yes
