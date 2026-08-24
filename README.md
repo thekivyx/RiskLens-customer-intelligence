@@ -151,6 +151,23 @@ Consumer Financial Protection Bureau Consumer Complaint Database:
 
 https://www.consumerfinance.gov/data-research/consumer-complaints/
 
+## Testing and Reliability
+
+RiskLens includes seven automated data-quality tests covering:
+
+- Required schema validation
+- Missing complaint IDs
+- Duplicate complaint IDs
+- Invalid received dates
+- Missing required business fields
+- Unexpected response-status values
+- Empty dataset detection
+
+Run the tests locally:
+
+```bash
+pytest -v
+
 ## Limitations
 
 - Raw complaint volume does not account for company size or market share.
