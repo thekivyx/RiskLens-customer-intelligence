@@ -4,7 +4,7 @@ import pandas as pd
 
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
-INPUT_FILE = PROJECT_ROOT / "data" / "raw" / "complaints_sample.csv"
+INPUT_FILE = PROJECT_ROOT / "data" / "raw" / "complaints_history.csv"
 OUTPUT_FILE = PROJECT_ROOT / "data" / "processed" / "complaints_clean.csv"
 
 
