@@ -1,0 +1,11 @@
+.venv/
+.git/
+.github/
+__pycache__/
+.pytest_cache/
+*.pyc
+.env
+data/raw/
+data/processed/
+models/
+powerbi/

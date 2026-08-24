@@ -1,0 +1,39 @@
+services:
+  database:
+    image: mysql:8.4
+    container_name: risklens-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: risklens
+      MYSQL_ROOT_PASSWORD: risklens_root_password
+      MYSQL_USER: risklens_user
+      MYSQL_PASSWORD: risklens_password
+    ports:
+      - "3307:3306"
+    volumes:
+      - risklens_mysql_data:/var/lib/mysql
+      - ./sql/01_create_tables.sql:/docker-entrypoint-initdb.d/01_create_tables.sql
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "mysqladmin",
+          "ping",
+          "-h",
+          "localhost",
+          "-prisklens_root_password"
+        ]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+  tests:
+    build: .
+    container_name: risklens-tests
+    depends_on:
+      database:
+        condition: service_healthy
+    command: pytest -v
+
+volumes:
+  risklens_mysql_data:
