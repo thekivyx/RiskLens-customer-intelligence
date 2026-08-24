@@ -42,6 +42,15 @@ FROM vw_company_risk_signals
 WHERE data_status = 'Complete'
   AND baseline_weeks >= 3
   AND complaint_count >= 20
+   AND DATE_ADD(week_start, INTERVAL 6 DAY) <=
+      DATE_SUB(
+          (
+              SELECT MAX(complaint_date)
+              FROM vw_daily_product_metrics
+          ),
+          INTERVAL 21 DAY
+      )
+
   AND alert_level IN (
       'Watch',
       'Warning',
