@@ -83,6 +83,42 @@ Evaluation:
 | Weighted F1 | 60.83% |
 | Categories | 11 |
 
+## Generative AI-Assisted Theme Analysis
+
+RiskLens extends its TF-IDF-based text analytics with a controlled Gemini workflow for emerging complaint clusters. Instead of sending the complete complaint dataset to an LLM, the pipeline selects the three highest-scoring themes per product and retrieves up to five supporting narratives for each theme.
+
+Before API processing, common email addresses and number patterns are redacted. Gemini 3.5 Flash-Lite then returns schema-constrained JSON containing:
+
+* An executive-ready cluster summary
+* The primary unmet customer need
+* Potential service or operational-risk implications
+* An urgency classification
+* A recommended investigation action
+* Supporting complaint IDs
+* A confidence value and human-review flag
+
+Pydantic validates the response structure, and supporting complaint IDs are checked against the records actually supplied to the model. Outputs with ambiguous, sensitive or limited evidence are routed for human review.
+
+### LLM Evaluation
+
+Six emerging-theme summaries were reviewed using automated and manual checks:
+
+| Evaluation measure                  | Result |
+| ----------------------------------- | -----: |
+| Valid supporting-evidence IDs       |    6/6 |
+| Minimum evidence threshold met      |    6/6 |
+| Valid confidence values             |    6/6 |
+| Evidence-grounded summaries         |    6/6 |
+| Coherent complaint clusters         |    4/6 |
+| Actionable recommendations          |    4/6 |
+| Unsupported claims detected         |    0/6 |
+| Appropriate urgency classifications |    6/6 |
+
+The evaluation showed that LLM output quality depends heavily on upstream cluster quality. Generic phrases such as “formally request” and “letter sent” combined unrelated complaint problems, so these outputs were retained for human review rather than treated as reliable automated findings.
+
+This is a small portfolio evaluation and does not establish production-level model performance. The LLM-generated confidence value is not treated as a statistically calibrated probability.
+
+
 ## Power BI Dashboard
 
 ### Executive Risk Overview
